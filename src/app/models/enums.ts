@@ -1,0 +1,17 @@
+export enum Role {
+  RESPONSABLE = 'RESPONSABLE',
+  ADMIN = 'ADMIN'
+}
+
+export enum TypeDemande {
+  CREATION = 'CREATION',
+  MODIFICATION = 'MODIFICATION',
+  DESACTIVATION = 'DESACTIVATION'
+}
+
+export enum StatusDemande {
+  RECU = 'RECU',
+  TRAITEE = 'TRAITEE',
+  REJETEE = 'REJETEE',
+  SUPPRIMEE = 'SUPPRIMEE'
+}

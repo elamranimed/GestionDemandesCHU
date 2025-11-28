@@ -1,0 +1,66 @@
+<div class="gestion-demandes p-p-3">
+  <p-card>
+    <p-table
+      [value]="demandes"
+      [paginator]="true"
+      [rows]="10"
+      [responsiveLayout]="'scroll'"
+      [rowHover]="true"
+      [tableStyle]="{ 'min-width': '60rem' }"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>N° Demande</th>
+          <th>Nom et Prénom</th>
+          <th>Date de Création</th>
+          <th>Date de Modification</th>
+          <th>Statut</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-demande let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ demande.nomComplet }}</td>
+          <td>{{ demande.createdAt | date:'shortDate' }}</td>
+          <td>{{ demande.lastUpdatedAt | date:'shortDate' }}</td>
+          <td>
+            <span
+              [ngClass]="
+                demande.statut === 'En cours' ? 'statut-en-cours' : 
+                demande.statut === 'Terminé' ? 'statut-termine' : ''
+              "
+            >
+              {{ demande.statut }}
+            </span>
+          </td>
+          <td class="actions">
+            <button
+              pButton
+              type="button"
+              icon="pi pi-eye"
+              class="p-button-rounded p-button-sm p-button-text btn-modifier"
+              title="Voir"
+            ></button>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-sm p-button-text btn-editer"
+              title="Modifier"
+              (click)="modifier(demande)"
+            ></button>
+            <button
+              pButton
+              type="button"
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-sm p-button-text btn-supprimer"
+              title="Supprimer"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>

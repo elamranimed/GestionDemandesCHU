@@ -1,0 +1,38 @@
+<p-toolbar class="topbar p-d-flex p-ai-center p-jc-between">
+  <div class="p-d-flex p-ai-center">
+    <img src="assets/logo.png" alt="Logo CHU" class="logo" />
+    <h1 class="title">Gestion des demandes CHU</h1>
+  </div>
+
+  <div class="user-section" *ngIf="currentUser">
+    <div class="user-info">
+      <p-avatar 
+        [label]="currentUser.prenom.charAt(0) + currentUser.nom.charAt(0)" 
+        styleClass="mr-2"
+        [style]="{'background-color':'#667eea', 'color': '#ffffff'}">
+      </p-avatar>
+      <span class="user-name">{{ currentUser.prenom }} {{ currentUser.nom }}</span>
+      <span class="user-role">({{ currentUser.role }})</span>
+    </div>
+
+    <div class="action-buttons">
+      <button 
+        pButton 
+        type="button" 
+        icon="pi pi-home" 
+        class="p-button-rounded p-button-outlined p-button-sm" 
+        (click)="goHome()"
+        title="Accueil">
+      </button>
+      
+      <button 
+        pButton 
+        type="button" 
+        icon="pi pi-sign-out" 
+        class="p-button-rounded p-button-outlined p-button-sm p-button-danger logout-button" 
+        (click)="logout()"
+        title="Déconnexion">
+      </button>
+    </div>
+  </div>
+</p-toolbar>

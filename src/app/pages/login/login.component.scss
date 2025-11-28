@@ -1,0 +1,101 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffffff 0%, #fdfdfd 100%);
+  padding: 1rem;
+}
+
+.login-wrapper {
+  width: 100%;
+  max-width: 450px;
+}
+
+.login-card {
+  box-shadow: 0 10px 40px rgb(7, 193, 225);
+  border-radius: 12px;
+
+  :host ::ng-deep & {
+    .p-card-body {
+      padding: 2rem;
+    }
+  }
+}
+
+.card-header {
+  text-align: center;
+  padding: 2rem 2rem 1rem;
+  background: linear-gradient(135deg, #04ddff 0%, #f4f119 100%);
+  color: rgb(0, 160, 199);
+  border-radius: 12px 12px 0 0;
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.95;
+  }
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #00a89a;
+  }
+}
+
+:host ::ng-deep {
+  .p-inputtext,
+  .p-password input {
+    width: 100%;
+  }
+
+  .p-button {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .p-message {
+    margin-bottom: 1rem;
+  }
+
+  /* ✅ Texte saisi dans le champ login */
+  #login {
+    color: #363e41 !important;
+  }
+
+  /* ✅ Texte saisi dans le champ mot de passe */
+  input[type="password"] {
+    color: #3d4345 !important;
+  }
+
+  /* ✅ Placeholder du champ login */
+  #login::placeholder {
+    color: rgba(24, 23, 23, 0.263) !important;
+    opacity: 1;
+  }
+
+  /* ✅ Placeholder du champ mot de passe */
+  input[type="password"]::placeholder {
+    color: rgba(20, 20, 20, 0.276) !important;
+    opacity: 1;
+  }
+
+  /* ✅ Icône œil (toggle mask) : couleur + position */
+  .p-password .p-password-icon {
+    color: #03ffea !important;   // couleur de l’icône œil
+    font-size: 1.2rem;           // taille de l’icône
+    position: relative;          // permet d’ajuster la position
+    top: 9px;                    // pousse l’icône vers le bas
+  }
+}

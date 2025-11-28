@@ -1,0 +1,93 @@
+<div class="sidebar">
+  <p-panel [toggleable]="false" styleClass="sidebar-panel">
+    <button
+      *ngIf="isResponsable"
+      pButton
+      pRipple
+      class="create-btn p-button-raised"
+      [routerLink]="['/responsable', 'creer-demande']"
+      icon="pi pi-plus-circle"
+      label="Créer une nouvelle demande"
+      pTooltip="Ajouter une nouvelle demande"
+      tooltipPosition="right"
+    ></button>
+
+    <p-divider *ngIf="isAdmin || isResponsable" styleClass="custom-divider">
+      <span class="divider-text">Navigation</span>
+    </p-divider>
+
+    <div class="nav-block" *ngIf="isAdmin">
+      <div class="nav-item-wrapper">
+        <button
+          pButton
+          pRipple
+          class="nav-item p-button-rounded"
+          [routerLink]="['/admin', 'toutes-demandes']"
+          routerLinkActive="active-route"
+        >
+          <i class="pi pi-list nav-icon"></i>
+          <span class="nav-label">Toutes les demandes</span>
+          <p-badge 
+            [value]="totalDemandes.toString()" 
+            severity="info"
+            styleClass="nav-badge"
+          ></p-badge>
+        </button>
+      </div>
+
+      <div class="nav-item-wrapper">
+        <button
+          pButton
+          pRipple
+          class="nav-item p-button-rounded"
+          [routerLink]="['/admin', 'liste-personnel']"
+          routerLinkActive="active-route"
+        >
+          <i class="pi pi-users nav-icon"></i>
+          <span class="nav-label">Liste du personnel</span>
+          <p-badge 
+            [value]="totalPersonnel.toString()" 
+            severity="success"
+            styleClass="nav-badge"
+          ></p-badge>
+        </button>
+      </div>
+    </div>
+
+    <div class="nav-block" *ngIf="isResponsable">
+      <div class="nav-item-wrapper">
+        <button
+          pButton
+          pRipple
+          class="nav-item p-button-rounded"
+          [routerLink]="['/responsable', 'mes-demandes']"
+          routerLinkActive="active-route"
+        >
+          <i class="pi pi-inbox nav-icon"></i>
+          <span class="nav-label">Mes demandes</span>
+        </button>
+      </div>
+
+      <div class="nav-item-wrapper">
+        <button
+          pButton
+          pRipple
+          class="nav-item p-button-rounded"
+          [routerLink]="['/responsable', 'personnels']"
+          routerLinkActive="active-route"
+        >
+          <i class="pi pi-users nav-icon"></i>
+          <span class="nav-label">Liste personnels</span>
+        </button>
+      </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <div class="sidebar-footer">
+        <small class="footer-text">
+          <i class="pi pi-info-circle"></i> Besoin d'aide ?
+        </small>
+      </div>
+    </ng-template>
+  </p-panel>
+</div>

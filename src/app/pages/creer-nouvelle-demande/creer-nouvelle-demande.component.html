@@ -1,0 +1,147 @@
+<p-toast></p-toast>
+
+<div class="creation-wrapper">
+  <div class="mode-switch">
+    <button type="button" (click)="setMode('unique')" [class.active]="mode === 'unique'">
+      Demande unique
+    </button>
+    <button type="button" (click)="setMode('multiple')" [class.active]="mode === 'multiple'">
+      Demandes multiples
+    </button>
+  </div>
+
+  <div class="formulaire-demande" *ngIf="mode === 'unique'">
+    <h2>Créer une nouvelle demande</h2>
+
+    <form [formGroup]="demandeForm" (ngSubmit)="enregistrerDemande()" class="form-grid">
+      <div class="form-field">
+        <label for="cin">CIN</label>
+        <input
+          id="cin"
+          pInputText
+          type="text"
+          formControlName="cin"
+          [ngClass]="{ 'ng-invalid': demandeForm.controls.cin.invalid && demandeForm.controls.cin.touched }"
+        />
+      </div>
+
+      <div class="form-field">
+        <label for="nom">Nom</label>
+        <input id="nom" pInputText type="text" formControlName="nom" />
+      </div>
+
+      <div class="form-field">
+        <label for="prenom">Prénom</label>
+        <input id="prenom" pInputText type="text" formControlName="prenom" />
+      </div>
+
+      <div class="form-field">
+        <label for="categorie">Catégorie professionnelle</label>
+        <p-select
+          inputId="categorie"
+          [options]="categoryOptions"
+          optionLabel="label"
+          optionValue="value"
+          formControlName="cat_professionel"
+          placeholder="Choisir une catégorie"
+          [appendTo]="'body'"
+          panelStyleClass="demande-select-panel"
+        ></p-select>
+      </div>
+
+      <div class="form-field">
+        <label for="type">Type de demande</label>
+        <p-select
+          inputId="type"
+          [options]="typeOptions"
+          optionLabel="label"
+          optionValue="value"
+          formControlName="type"
+          [appendTo]="'body'"
+          panelStyleClass="demande-select-panel"
+        ></p-select>
+      </div>
+
+      <div class="form-field">
+        <label for="application">Application cible</label>
+        <p-select
+          inputId="application"
+          [options]="applicationOptions"
+          optionLabel="label"
+          optionValue="value"
+          formControlName="application"
+          placeholder="Sélectionnez une application"
+          [appendTo]="'body'"
+          panelStyleClass="demande-select-panel"
+        ></p-select>
+      </div>
+
+      <div class="form-field full-width">
+        <label for="motif">Motif / détails</label>
+        <textarea
+          id="motif"
+          pTextarea
+          rows="4"
+          autoResize="true"
+          formControlName="motif"
+          placeholder="Expliquez clairement la demande..."
+        ></textarea>
+      </div>
+
+      <div class="actions">
+        <button
+          pButton
+          type="submit"
+          label="Envoyer la demande"
+          [loading]="loading"
+          [disabled]="loading || demandeForm.invalid"
+        ></button>
+      </div>
+    </form>
+  </div>
+
+  <div class="formulaire-demande bulk-mode" *ngIf="mode === 'multiple'">
+    <h2>Charger un lot de demandes</h2>
+
+    <div class="bulk-upload">
+      <p class="bulk-intro">
+        Téléchargez le modèle Excel/CSV, renseignez une ligne par utilisateur puis importez-le afin de transmettre toutes les demandes aux administrateurs.
+      </p>
+      <ul class="bulk-hints">
+        <li>Colonnes obligatoires : CIN, Nom, Prénom, Catégorie, Application, Type, Motif.</li>
+        <li>Respectez les valeurs attendues pour les colonnes Type et Catégorie afin d'éviter les rejets.</li>
+        <li>Fichiers acceptés : .xlsx, .xls ou .csv (5 Mo max).</li>
+      </ul>
+
+      <label class="file-drop" for="bulkFile">
+        <input
+          #bulkFileInput
+          id="bulkFile"
+          type="file"
+          accept=".xlsx,.xls,.csv"
+          (change)="onFileSelected($event)"
+        />
+        <div class="file-drop__content">
+          <span class="file-drop__title">Glissez-déposez votre fichier ici</span>
+          <span class="file-drop__subtitle">ou cliquez pour parcourir vos dossiers</span>
+        </div>
+      </label>
+
+      <div class="file-summary" *ngIf="bulkFile">
+        <span class="file-name">{{ bulkFile.name }}</span>
+        <span class="file-size">{{ bulkFile.size / 1024 | number: '1.0-0' }} Ko</span>
+      </div>
+
+      <div class="actions">
+        <button
+          pButton
+          type="button"
+          label="Envoyer le fichier"
+          (click)="submitBulkDemandes()"
+          [disabled]="uploading || !bulkFile"
+          [loading]="uploading"
+        ></button>
+      </div>
+    </div>
+  </div>
+</div>

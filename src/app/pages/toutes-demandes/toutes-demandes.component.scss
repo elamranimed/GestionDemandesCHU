@@ -1,0 +1,151 @@
+/* Styles pour la page des demandes */
+
+.gestion-demandes {
+  padding: 24px;
+}
+
+/* Table PrimeNG */
+.p-datatable-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+}
+
+.p-datatable-thead > tr > th {
+  background-color: #e6f7ff;
+  color: #007acc;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.p-datatable-tbody > tr > td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #ddd;
+  color: #333;
+  background-color: #ffffff;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.p-datatable-tbody > tr:hover > td {
+  background-color: #f9f9f9;
+}
+
+.p-datatable {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Statut badges */
+.statut-en-cours,
+.statut-termine {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border-radius: 25px;
+  text-transform: capitalize;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+.statut-en-cours {
+  background-color: #fff59d;
+  color: #f57f17;
+}
+
+.statut-en-cours::before {
+  content: '⏳';
+  margin-right: 4px;
+}
+
+.statut-termine {
+  background-color: #81c784;
+  color: #fff;
+}
+
+.statut-termine::before {
+  content: '✔';
+  margin-right: 4px;
+}
+
+/* Actions buttons */
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 12px 16px;
+  margin: 0;
+}
+
+.btn-modifier,
+.btn-editer,
+.btn-supprimer {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+.btn-modifier {
+  background-color: #42a5f5 !important;
+  color: #fff !important;
+}
+
+.btn-modifier:hover {
+  background-color: #1e88e5 !important;
+  transform: scale(1.1);
+}
+
+.btn-editer {
+  background-color: #ffb74d !important;
+  color: #fff !important;
+}
+
+.btn-editer:hover {
+  background-color: #fb8c00 !important;
+  transform: scale(1.1);
+}
+
+.btn-supprimer {
+  background-color: #ef5350 !important;
+  color: #fff !important;
+}
+
+.btn-supprimer:hover {
+  background-color: #e53935 !important;
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .p-datatable-thead {
+    display: none;
+  }
+
+  .p-datatable-tbody > tr > td {
+    display: block;
+    text-align: right;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  .actions {
+    justify-content: flex-start;
+    gap: 0.5rem;
+  }
+}

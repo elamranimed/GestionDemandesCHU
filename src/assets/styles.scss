@@ -1,5 +1,124 @@
-/* You can add global styles to this file, and also import other style files */
-@use './tailwind.css';
-@use './layout/layout.scss';
-@use 'primeicons/primeicons.css';
-@use './demo/demo.scss';
+@use 'primeflex/primeflex' as *;
+@import "primeicons/primeicons.css";
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+/* ===== STYLES POUR LES DROPDOWNS PRIMENG ===== */
+.p-dropdown-panel,
+.p-select-overlay {
+  z-index: 1003 !important;
+  border: 2px solid #0078d4 !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #0078d4 0%, #005fa3 100%) !important;
+  box-shadow: 0 15px 40px rgba(0, 120, 212, 0.4) !important;
+  backdrop-filter: blur(8px);
+  padding: 8px !important;
+}
+
+.p-dropdown-panel .p-dropdown-items,
+.p-select-overlay .p-select-list {
+  background: transparent !important;
+  max-height: 280px;
+  padding: 4px !important;
+}
+
+.p-dropdown-panel .p-dropdown-item,
+.p-select-overlay .p-select-option {
+  color: #ffffff !important;
+  font-weight: 600;
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  margin-bottom: 4px;
+  background: rgba(255, 255, 255, 0.15) !important;
+  transition: all 0.2s ease !important;
+}
+
+.p-dropdown-panel .p-dropdown-item:hover,
+.p-dropdown-panel .p-dropdown-item.p-focus,
+.p-dropdown-panel .p-dropdown-item.p-highlight,
+.p-select-overlay .p-select-option:hover,
+.p-select-overlay .p-select-option.p-focus,
+.p-select-overlay .p-select-option.p-highlight {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #0078d4 !important;
+  transform: translateX(4px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Styles pour le calendrier */
+.p-datepicker {
+  z-index: 1003 !important;
+  border: 2px solid #0078d4 !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+  box-shadow: 0 15px 40px rgba(0, 120, 212, 0.3) !important;
+}
+
+/* ===== STYLES POUR LES DIALOGS PRIMENG ===== */
+.p-dialog .p-dialog-header {
+  background: #ffffff !important;
+  color: #0f172a !important; /* slate-900 */
+  border-bottom: 1px solid #e5e7eb !important; /* gray-200 */
+}
+
+.p-dialog .p-dialog-content {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.p-dialog .p-dialog-footer {
+  background: #ffffff !important;
+  border-top: 1px solid #e5e7eb !important;
+}
+
+.p-dialog-mask {
+  backdrop-filter: blur(2px);
+}
+
+/* ===== CONFIRMATION DIALOG AVERTISSEMENT ===== */
+.p-confirm-dialog .p-dialog-content {
+  background: #fef3c7 !important; /* amber-100 */
+  color: #78350f !important; /* amber-900 */
+  border-left: 4px solid #f59e0b !important; /* amber-500 */
+}
+
+.p-confirm-dialog .p-dialog-header {
+  background: #fde68a !important; /* amber-200 */
+  color: #78350f !important;
+  border-bottom: 2px solid #f59e0b !important;
+}
+
+.p-confirm-dialog .p-confirm-dialog-icon {
+  color: #f59e0b !important; /* amber-500 */
+}
+
+/* Assurer la lisibilité des overlays et leur ordre d'empilement */
+.p-component-overlay,
+.p-dialog,
+.p-dialog-mask,
+.p-dropdown-panel,
+.p-select-overlay,
+.p-datepicker {
+  z-index: 1100 !important;
+}
+
+/* ===== Mise en forme du contenu de la visualisation ===== */
+.demande-dialog-title {
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.demande-detail-row {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.demande-detail-label {
+  font-weight: 600;
+}

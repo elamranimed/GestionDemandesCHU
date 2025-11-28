@@ -1,0 +1,59 @@
+<div class="personnels-responsable">
+  <div class="header">
+    <div>
+      <h2>Liste du personnel</h2>
+      <p>Consultez les membres que vous avez créés.</p>
+    </div>
+    <div class="header-actions">
+      <span class="badge">{{ totalPersonnels }} profils</span>
+      <button pButton type="button" icon="pi pi-refresh" label="Actualiser" class="p-button-rounded p-button-info p-button-outlined"></button>
+    </div>
+  </div>
+
+  <div class="summary-grid">
+    <p-card class="summary-card primary">
+      <span class="label">Total profils</span>
+      <strong>{{ totalPersonnels }}</strong>
+      <small>Tous les collaborateurs</small>
+    </p-card>
+    <p-card class="summary-card accent">
+      <span class="label">Actifs</span>
+      <strong>{{ countActive() }}</strong>
+      <small>Disponibles immédiatement</small>
+    </p-card>
+  </div>
+
+  <p-card class="table-card">
+    <p-table [value]="personnels" [responsiveLayout]="'scroll'" [tableStyle]="{ 'min-width': '45rem' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Profil</th>
+          <th>Personne</th>
+          <th>Contact</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-personnel>
+        <tr>
+          <td>
+            <span class="profil-pill">{{ personnel.profil }}</span>
+          </td>
+          <td>
+            <div class="person-cell">
+              <div class="avatar">{{ personnel.prenom.charAt(0) }}{{ personnel.nom.charAt(0) }}</div>
+              <div>
+                <strong>{{ personnel.nom }} {{ personnel.prenom }}</strong>
+                <small>{{ personnel.statut === 'ACTIF' ? 'Actif' : 'Inactif' }}</small>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="contact-pill">
+              <i class="pi pi-envelope"></i>
+              <span>{{ personnel.email }}</span>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>

@@ -1,0 +1,171 @@
+<div class="mes-demandes">
+  <div class="header">
+    <div>
+      <h2>Mes demandes</h2>
+      <p>Visualisez, suivez et contrôlez vos demandes en toute simplicité.</p>
+    </div>
+    <span class="badge">{{ totalDemandes }} demandes</span>
+  </div>
+
+  <div class="summary-grid">
+    <p-card class="summary-card total">
+      <span class="label">Total</span>
+      <strong>{{ totalDemandes }}</strong>
+      <small>Toutes demandes confondues</small>
+    </p-card>
+    <p-card class="summary-card pending">
+      <span class="label">En cours</span>
+      <strong>{{ countByStatus(Status.RECU) }}</strong>
+      <small>En attente de traitement</small>
+    </p-card>
+    <p-card class="summary-card success">
+      <span class="label">Traitées</span>
+      <strong>{{ countByStatus(Status.TRAITEE) }}</strong>
+      <small>Demandes finalisées</small>
+    </p-card>
+  </div>
+
+  <div class="alert error" *ngIf="errorMessage">
+    <span>{{ errorMessage }}</span>
+    <button type="button" (click)="fetchDemandes()">Réessayer</button>
+  </div>
+
+  <p-card class="table-card">
+    <p-table
+      [value]="demandes"
+      [responsiveLayout]="'scroll'"
+      [tableStyle]="{ 'min-width': '55rem' }"
+      [loading]="loading"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID</th>
+          <th>Nom et Prénom</th>
+          <th>Date de création</th>
+          <th>Statut</th>
+          <th class="actions-column">Actions</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-demande>
+        <tr>
+          <td>
+            <span class="id-pill">#{{ demande.idDemande }}</span>
+          </td>
+          <td>
+            <div class="person-cell">
+              <div class="avatar">
+                {{ demande.prenom?.charAt(0) }}{{ demande.nom?.charAt(0) }}
+              </div>
+              <div>
+                <strong>{{ demande.nom }} {{ demande.prenom }}</strong>
+                <small>Réf. {{ demande.idDemande }}</small>
+              </div>
+            </div>
+          </td>
+          <td>{{ demande.created_at | date: 'dd MMM yyyy' }}</td>
+          <td>
+            <p-tag
+              [severity]="getSeverity(demande.status)"
+              [styleClass]="
+                demande.status === Status.RECU
+                  ? 'status-tag en-cours'
+                  : demande.status === Status.TRAITEE
+                  ? 'status-tag traitee'
+                  : demande.status === Status.REJETEE
+                  ? 'status-tag rejete'
+                  : 'status-tag supprimee'
+              "
+              [value]="formatStatus(demande.status)"
+            ></p-tag>
+          </td>
+          <td>
+            <div class="actions">
+              <button
+                pButton
+                type="button"
+                icon="pi pi-eye"
+                class="p-button-rounded p-button-text action-view"
+                title="Visualiser"
+                (click)="onViewDemande(demande.idDemande)"
+              ></button>
+              <button
+                pButton
+                type="button"
+                icon="pi pi-pencil"
+                class="p-button-rounded p-button-text action-edit"
+                title="Modifier"
+              ></button>
+              <button
+                pButton
+                type="button"
+                icon="pi pi-times"
+                class="p-button-rounded p-button-text action-delete"
+                title="Supprimer"
+                (click)="onDeleteDemande(demande.idDemande)"
+              ></button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5" class="empty-state">
+            <p>Aucune demande enregistrée pour le moment.</p>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+
+  <p-dialog
+    [(visible)]="viewDialogVisible"
+    [modal]="true"
+    [style]="{ width: '520px' }"
+    [draggable]="false"
+    [resizable]="false"
+    header="Détail de la demande"
+    (onHide)="closeViewDialog()"
+  >
+    <div *ngIf="viewLoading" class="dialog-loading">
+      Chargement des informations...
+    </div>
+    <div *ngIf="!viewLoading && viewError" class="dialog-error">
+      {{ viewError }}
+    </div>
+    <div *ngIf="!viewLoading && !viewError && selectedDemande" class="dialog-content">
+      <div class="detail-row">
+        <span class="label">Référence</span>
+        <span class="value">#{{ selectedDemande.idDemande }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Identité</span>
+        <span class="value">{{ selectedDemande.nom }} {{ selectedDemande.prenom }} (CIN: {{ selectedDemande.cin }})</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Catégorie</span>
+        <span class="value">{{ selectedDemande.cat_professionel }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Type</span>
+        <span class="value">{{ selectedDemande.type }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Application</span>
+        <span class="value">{{ selectedDemande.application }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Statut</span>
+        <span class="value">{{ formatStatus(selectedDemande.status) }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Motif</span>
+        <span class="value">{{ selectedDemande.motif }}</span>
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+      <button pButton type="button" label="Fermer" (click)="closeViewDialog()"></button>
+    </ng-template>
+  </p-dialog>
+
+  <p-confirmDialog></p-confirmDialog>
+</div>

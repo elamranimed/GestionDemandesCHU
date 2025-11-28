@@ -1,0 +1,25 @@
+.dashboard-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f5f7fb;
+}
+
+.dashboard-body {
+  display: flex;
+  flex: 1;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+app-sidebar {
+  flex: 0 0 280px;
+}
+
+.dashboard-content {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
+}
