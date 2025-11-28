@@ -103,6 +103,12 @@
   z-index: auto;
 }
 
+.formulaire-demande input::placeholder,
+.formulaire-demande textarea::placeholder {
+  color: #95a9c2;
+  opacity: 1;
+}
+
 .formulaire-demande input:focus,
 .formulaire-demande textarea:focus,
 .formulaire-demande .p-dropdown:focus,
@@ -254,7 +260,7 @@
   position: fixed !important;
   background: #e6f2ff !important;
   border: 1px solid #4f7ac7 !important;
-  box-shadow: 0 12px 30px rgba(0, 80, 170, 0.25) !important;
+  box-shadow: 0 12px 30px rgba(192, 210, 230, 0.25) !important;
 }
 
 ::ng-deep .p-calendar .p-datepicker {

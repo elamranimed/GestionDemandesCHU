@@ -38,6 +38,7 @@ export class CreerNouvelleDemandeComponent {
     cin: ['', [Validators.required, Validators.minLength(6)]],
     nom: ['', Validators.required],
     prenom: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
     cat_professionel: ['', Validators.required],
     type: [TypeDemande.CREATION, Validators.required],
     application: ['', Validators.required],

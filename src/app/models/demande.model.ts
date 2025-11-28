@@ -6,6 +6,7 @@ export interface Demande {
   cin: string;
   nom: string;
   prenom: string;
+  email: string;
   cat_professionel: string;
   created_at?: Date;
   updated_at?: Date;
@@ -22,6 +23,7 @@ export interface DemandeCreationDTO {
   cin: string;
   nom: string;
   prenom: string;
+  email: string;
   cat_professionel: string;
   type: TypeDemande;
   application: string;
@@ -35,6 +37,7 @@ export interface DemandeModificationDTO {
   cin: string;
   nom: string;
   prenom: string;
+  email: string;
   cat_professionel: string;
   type: TypeDemande;
   application: string;
@@ -53,6 +56,7 @@ export interface DemandeDTO {
   cin: string;
   nom: string;
   prenom: string;
+  email: string;
   cat_professionel: string;
   created_at: Date;
   type: TypeDemande;

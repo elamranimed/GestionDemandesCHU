@@ -36,6 +36,18 @@
       </div>
 
       <div class="form-field">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          pInputText
+          type="email"
+          formControlName="email"
+          placeholder="exemple@chu.ma"
+          [ngClass]="{ 'ng-invalid': demandeForm.controls.email.invalid && demandeForm.controls.email.touched }"
+        />
+      </div>
+
+      <div class="form-field">
         <label for="categorie">Catégorie professionnelle</label>
         <p-select
           inputId="categorie"

@@ -135,11 +135,15 @@
     <div *ngIf="!viewLoading && !viewError && selectedDemande" class="dialog-content">
       <div class="detail-row">
         <span class="label">Référence</span>
-        <span class="value">#{{ selectedDemande.idDemande }}</span>
+        <span class="value"># {{ selectedDemande.idDemande }}</span>
       </div>
       <div class="detail-row">
         <span class="label">Identité</span>
         <span class="value">{{ selectedDemande.nom }} {{ selectedDemande.prenom }} (CIN: {{ selectedDemande.cin }})</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Email</span>
+        <span class="value">{{ selectedDemande.email }}</span>
       </div>
       <div class="detail-row">
         <span class="label">Catégorie</span>

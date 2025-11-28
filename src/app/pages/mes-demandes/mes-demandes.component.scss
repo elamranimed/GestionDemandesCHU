@@ -241,4 +241,47 @@
       color: #dc2626;
     }
   }
+
+  // Dialog view detail rows with spacing
+  ::ng-deep .p-dialog .dialog-content {
+    .detail-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      align-items: baseline;
+
+      .label {
+        font-weight: 600;
+        color: #475569;
+        min-width: 120px;
+        &::after {
+          content: ':';
+        }
+      }
+
+      .value {
+        color: #0f172a;
+        flex: 1;
+      }
+    }
+  }
+
+  // Yellow warning background for confirmation dialog
+  ::ng-deep .p-confirm-dialog {
+    .p-dialog-header {
+      background: #fde68a !important; /* amber-200 */
+      color: #78350f !important;
+      border-bottom: 2px solid #f59e0b !important;
+    }
+
+    .p-dialog-content {
+      background: #fef3c7 !important; /* amber-100 */
+      color: #78350f !important;
+      border-left: 4px solid #f59e0b !important;
+    }
+
+    .p-confirm-dialog-icon {
+      color: #f59e0b !important; /* amber-500 */
+    }
+  }
 }
